@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 class WorkflowDetails extends Component{
     render(){
-        console.log(this.props);
+        //console.log(this.props);
         const{nodes} = this.props;
         return(
             <div>

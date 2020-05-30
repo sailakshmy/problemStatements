@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 //Dispatch the Create_workflow action to the Action Creator by using mapDispatchToProps and connect
 import {createWorkflow} from '../../store/actions/workflowActions';
 
+
 class CreateWorkflow extends Component{
     state={
         workflowNumber:''
@@ -20,21 +21,40 @@ class CreateWorkflow extends Component{
 
     render(){
         return(
-                <div>
-                    <div className="divider"></div>
-                    <div className="container">
-                        <form onSubmit={this.handleSubmit} className="white">
-                            <h5>Create Workflow</h5>
-                            <div className="input-field">
-                                <label htmlFor='workflowNumber'>Workflow Number</label>
-                                <input type="text" id='workflowNumber' onChange={this.handleChange}/>
-                            </div>
-                         </form>
+        <div className="container">
+        <form onSubmit={this.handleSubmit} className="white" >
+            <h5>Create Workflow</h5>
+            <div className="divider"></div>
+            <div className="input-field">
+            <label htmlFor='workflowTitle'>Workflow Title</label>
+            <input type="text" id='workflowTitle' onChange={this.handleChange}/> 
+            </div>
+            <div className="divider"></div>
+            <div className="input-field">
+                <button className="btn green" onClick={this.handleSubmit}>Add Workflow</button>
+            </div>
+        </form>
+    </div>
+    )
+        /*return(
+            <div>
+            <div className="divider"></div>
+            <div className="container">
+                <form onSubmit={this.handleSubmit} className="white">
+                    <h5>Create Workflow</h5>
+                    <div className="input-field">
+                        <label htmlFor='workflowNumber'>Workflow Number</label>
+                        <input type="text" id='workflowNumber' onChange={this.handleChange}/>
                     </div>
-                    <div className="divider"></div>
-                </div>
+                    <div className="input-field">
+                        <button className="btn green right" onClick={this.handleSubmit}>Create Workflow</button>                                
+                    </div>
+                </form>
+            </div>
+            <div className="divider"></div>
+        </div>
 
-        )
+        )*/
     }
 
 }

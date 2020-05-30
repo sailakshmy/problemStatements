@@ -4,9 +4,11 @@ import {connect} from 'react-redux';
 //Dispatch the create node action to the actionCreator by using mapDispatchToProps and connect
 import {createNode} from '../../store/actions/nodeActions';
 
+
+
 class CreateNode extends Component{
     state={
-        nodeNumber:'',
+        nodeTitle:'',
         nodeDetails:''
     }
 
@@ -21,34 +23,27 @@ class CreateNode extends Component{
     }
 
     render(){
-        return(
-                <div>
-                    <div className="divider"></div>
-                    <div className="container">
-                        <form className="white">
-                            <h5>Create Node</h5>
-                            <div className="card">
-                                <div className="divider"></div>
-                                <div className="card-content input-field">
-                                    <label htmlFor='nodeNumber'>Node Number</label>
-                                    <input type="text" id='nodeNumber' onChange={this.handleChange}/> 
-                                </div>
-                                <div className="divider"></div>
-                                <div className="card-content input-field">
-                                    <label htmlFor='nodeDetails'>Node Details</label>
-                                    <textarea  className="materialize-textarea" id='nodeDetails' onChange={this.handleChange}></textarea>
-                                </div>
-                                <div className="input-field">
-                                    <button className="btn green right" onClick={this.handleSubmit}>Create Node</button>                                
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div className="divider"></div>
-                </div>
-
-        )
-    }
+        return (
+        <div className="container">
+        <form onSubmit={this.handleSubmit} className="white" >
+            <h5>Create Node</h5>
+            <div className="divider"></div>
+            <div className="input-field">
+            <label htmlFor='nodeTitle'>Node Title</label>
+            <input type="text" id='nodeTitle' onChange={this.handleChange}/> 
+            </div>
+            <div className="divider"></div>
+             <div className="input-field">
+             <label htmlFor='nodeDetails'>Node Details</label>
+            <textarea  className="materialize-textarea" id='nodeDetails' onChange={this.handleChange}></textarea>
+            </div>
+            <div className="input-field">
+                <button className="btn green" onClick={this.handleSubmit}> Add Node</button>
+            </div>
+        </form>
+    </div>
+    )
+}
 
 }
 

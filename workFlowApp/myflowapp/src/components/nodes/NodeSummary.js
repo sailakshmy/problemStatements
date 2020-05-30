@@ -6,7 +6,7 @@ const NodeSummary = ({node}) =>{
             <div className="card">
                 <div className="divider"></div>
                     <div className="card-content container">
-                        <p className="card-title">{node.nodeNumber}</p>
+                        <p className="card-title">{node.nodeTitle}</p>
                     </div>
                     <div className="divider"></div>
                     <div className="card-content input-field">
