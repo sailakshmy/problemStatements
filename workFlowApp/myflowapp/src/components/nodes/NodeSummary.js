@@ -2,16 +2,19 @@ import React from 'react';
 
 
 const NodeSummary = ({node}) =>{
-    return(
+        return(
             <div className="card">
                 <div className="divider"></div>
+                     <div className="card-content input-field">
+                        <i className="material-icons right grey circle done">done</i>
+                    </div>
                     <div className="card-content container">
                         <p className="card-title">{node.nodeTitle}</p>
                     </div>
                     <div className="divider"></div>
                     <div className="card-content input-field">
                         <p className="card-content">{node.nodeDetails}</p>
-                    </div>
+                    </div>                
             </div>
     )
 }

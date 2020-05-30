@@ -3,6 +3,11 @@ import WorkflowList from '../workflow/WorkflowList';
 import {Link} from 'react-router-dom';
 //Connect the component to redux store
 import {connect} from 'react-redux';
+/*To explicitly tell Firestore as to which component is active and which collection is being updated.
+ This component is where the updated workflows in the Db should be displayed */
+import {firestoreConnect} from 'react-redux-firebase';
+//To use more than 1 higher order components and chain them together
+import {compose} from 'redux';
 
 class Dashboard extends Component{
     render(){
@@ -26,7 +31,7 @@ class Dashboard extends Component{
                             <div className="row" id='filterbutton'>
                                 <div className="input-field col s12">
                                     <label htmlFor='filterbutton'></label>
-                                    <a className="btn btn-large white black-text dropdown-trigger" href='#' 
+                                    <a href='#' className="btn btn-large white black-text dropdown-trigger"
                                     data-target='dropdown1' id='filterbutton'>
                                         <i className="material-icons left">filter_list</i>
                                     Filter</a>
@@ -67,9 +72,16 @@ class Dashboard extends Component{
 
 //This is done to reflect the state of the redux store on the UI rather than using hardcoded data
 const mapStateToProps=(state)=>{
+   console.log(state);
     return{
-        workflows: state.workflow.workflows
+        workflows: state.firestore.ordered.workflows/*state.workflow.workflows- this is the dummy data that was hardcoded. To display
+        the data that is available in the DB, access the redux's state.firestore.ordered.workflows*/
     }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+connect(mapStateToProps),
+firestoreConnect([
+    {collection:'workflows'}
+])
+)(Dashboard);

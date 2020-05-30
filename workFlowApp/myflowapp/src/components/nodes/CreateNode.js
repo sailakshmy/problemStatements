@@ -9,7 +9,8 @@ import {createNode} from '../../store/actions/nodeActions';
 class CreateNode extends Component{
     state={
         nodeTitle:'',
-        nodeDetails:''
+        nodeDetails:'',
+        nodeStatus:'pending'
     }
 
     handleSubmit=(e)=>{

@@ -3,12 +3,20 @@ import NodeList from '../nodes/NodeList';
 //Connect the component to redux store
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+/**To explicitly inform Firebase as to which component is active. This component is where the updated Nodes
+ * in the DB should be displayed. */
+import {firestoreConnect} from 'react-redux-firebase';
+//To use more than 1 higher order components and chain them together
+import {compose} from 'redux';
 
 class WorkflowDetails extends Component{
     render(){
-        //console.log(this.props);
-        const{nodes} = this.props;
-        return(
+        console.log(this.props);
+        const{nodes, workflow} = this.props;
+        console.log(workflow);
+        const id = this.props.match.params.id;
+        if(workflow){
+            return(
             <div>
                 <div className="divider"></div>
                     <div className="section">
@@ -17,7 +25,7 @@ class WorkflowDetails extends Component{
                                 <div className="row">
                                     <div className="input-field col s12">
                                         <label htmlFor='searchBar'></label>
-                                        <input type="text" placeholder='Workflow Name' id='searchBar'/>
+                                        <input type="text" id='searchBar' value={workflow.workflowTitle}/>
                                     </div>
                                 </div>
                             </div>
@@ -68,17 +76,34 @@ class WorkflowDetails extends Component{
                     <NodeList nodes={nodes}/>
                 </div>
             </div>
-            
+            )
+        }
+        else{
+        return(
+            <div className="container center">Loading Workflow...</div> 
         )
+        }
     }
 
 }
 //This is done to reflect the state of the redux store as data on the UI, instead of using Hardcoded data
-const mapStateToProps=(state)=>{
+//ownProps will give access to the props of this component
+const mapStateToProps=(state, ownProps)=>{
+    console.log(state);
+    const id = ownProps.match.params.id;
+    const workflows = state.firestore.data.workflows;
+    const workflow = workflows ? workflows[id] : null;
     return{
-        nodes: state.node.nodes
+        nodes: state.node.nodes,
+        workflow: workflow
+
     }
 }
 
 
-export default connect(mapStateToProps)(WorkflowDetails);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection:'workflows'}
+    ])
+)(WorkflowDetails);

@@ -1,5 +1,6 @@
 import React  from 'react';
 import NodeSummary from './NodeSummary';
+import {Link} from 'react-router-dom';
 
 
 
@@ -10,7 +11,9 @@ const NodeList = ({nodes}) => {
                 node=>{
                     return(
                         <div className="col s4">
+                            <Link to={'/node/'+node.id}>
                             <NodeSummary node={node} key={node.id}/>
+                            </Link>
                          </div>
                     )
 

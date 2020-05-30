@@ -8,8 +8,11 @@ const WorkflowSummary = ({workflow}) =>{
                 <div className="card-content">
                     <i className="material-icons right">delete</i>
                     <span></span>
-                    <p className="card-title">{workflow.workflowTitle}</p>
-                    
+                    <p className="card-title">{workflow.workflowTitle}</p>   
+                </div>
+                <div className="divider"></div>
+                <div className="card-content input-field">
+                    <i className="material-icons right grey circle done">done</i>
                 </div>
 
             </div>
