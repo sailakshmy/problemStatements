@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import NodeList from '../nodes/NodeList';
+//Connect the component to redux store
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
@@ -72,7 +73,7 @@ class WorkflowDetails extends Component{
     }
 
 }
-
+//This is done to reflect the state of the redux store as data on the UI, instead of using Hardcoded data
 const mapStateToProps=(state)=>{
     return{
         nodes: state.node.nodes

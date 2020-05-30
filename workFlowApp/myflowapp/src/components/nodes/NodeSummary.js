@@ -6,11 +6,11 @@ const NodeSummary = ({node}) =>{
             <div className="card">
                 <div className="divider"></div>
                     <div className="card-content container">
-                        <p className="card-title">{node.title}</p>
+                        <p className="card-title">{node.nodeNumber}</p>
                     </div>
                     <div className="divider"></div>
                     <div className="card-content input-field">
-                        <p className="card-content">{node.content}</p>
+                        <p className="card-content">{node.nodeDetails}</p>
                     </div>
             </div>
     )

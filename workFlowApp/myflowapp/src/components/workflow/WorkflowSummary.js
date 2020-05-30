@@ -8,7 +8,7 @@ const WorkflowSummary = ({workflow}) =>{
                 <div className="card-content">
                     <i className="material-icons right">delete</i>
                     <span></span>
-                    <p className="card-title">{workflow.title}</p>
+                    <p className="card-title">{workflow.workflowNumber}</p>
                     
                 </div>
 

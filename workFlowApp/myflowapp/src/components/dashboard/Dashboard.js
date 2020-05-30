@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import WorkflowList from '../workflow/WorkflowList';
 import {Link} from 'react-router-dom';
+//Connect the component to redux store
 import {connect} from 'react-redux';
 
 class Dashboard extends Component{
@@ -64,6 +65,7 @@ class Dashboard extends Component{
 
 }
 
+//This is done to reflect the state of the redux store on the UI rather than using hardcoded data
 const mapStateToProps=(state)=>{
     return{
         workflows: state.workflow.workflows
