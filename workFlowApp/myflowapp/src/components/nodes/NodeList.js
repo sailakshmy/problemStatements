@@ -3,17 +3,19 @@ import NodeSummary from './NodeSummary';
 
 
 
-const NodeList = () => {
+const NodeList = ({nodes}) => {
     return(
         <div className='row'>
-            <div className="col s4">
-                <NodeSummary/>
-               
-            </div>
-            <div className="col s4">
-                <NodeSummary/>               
-            </div>
-            
+            {nodes && nodes.map(
+                node=>{
+                    return(
+                        <div className="col s4">
+                            <NodeSummary node={node} key={node.id}/>
+                         </div>
+                    )
+
+                }
+            )}            
         </div>
     )
 }

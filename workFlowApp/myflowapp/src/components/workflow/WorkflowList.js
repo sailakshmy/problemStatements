@@ -2,18 +2,19 @@ import React from 'react';
 import WorkflowSummary from './WorkflowSummary';
 
 
-const WorkflowList = () =>{
+const WorkflowList = ({workflows}) =>{
     return(
         <div className="row">
-            <div className="col s4">
-                <WorkflowSummary/>
-            </div>
-            <div className="col s4">
-                <WorkflowSummary/>
-            </div>
-            <div className="col s4">
-                <WorkflowSummary/>
-            </div>
+            {workflows && workflows.map(
+                workflow =>{
+                    return(
+                        <div className="col s4">
+                            <WorkflowSummary workflow={workflow} key={workflow.id}/>
+                        </div>
+                    )
+
+            }
+            )}
         </div>
         
     )

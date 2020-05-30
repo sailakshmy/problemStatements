@@ -1,16 +1,16 @@
 import React from 'react';
 
 
-const NodeSummary = () =>{
+const NodeSummary = ({node}) =>{
     return(
             <div className="card">
                 <div className="divider"></div>
-                    <div className="card-content container input-field">
-                        <input type="text" placeholder='Node Number'/> 
+                    <div className="card-content container">
+                        <p className="card-title">{node.title}</p>
                     </div>
                     <div className="divider"></div>
                     <div className="card-content input-field">
-                        <textarea  className="materialize-textarea" placeholder='Node Details'></textarea>
+                        <p className="card-content">{node.content}</p>
                     </div>
             </div>
     )

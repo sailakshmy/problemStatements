@@ -1,10 +1,12 @@
 import React,{Component} from 'react';
 import NodeList from '../nodes/NodeList';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class WorkflowDetails extends Component{
     render(){
         console.log(this.props);
+        const{nodes} = this.props;
         return(
             <div>
                 <div className="divider"></div>
@@ -32,9 +34,9 @@ class WorkflowDetails extends Component{
                                 <div className="row" id='createWorkflowButton'>
                                     <div className="input-field col s12">
                                         <label htmlFor='createNode'></label>
-                                        <button className="btn btn-large green darken-4 accent-4" id='createWorkflowButton'>
+                                        <Link to='/createnode' className="btn btn-large green darken-4 accent-4" id='createWorkflowButton'>
                                         <i className="material-icons left">add</i>
-                                        Add Node</button>
+                                        Add Node</Link>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +64,7 @@ class WorkflowDetails extends Component{
                     </div>
                 <div className="divider"></div>
                 <div className="dashboard">
-                    <NodeList/>
+                    <NodeList nodes={nodes}/>
                 </div>
             </div>
             

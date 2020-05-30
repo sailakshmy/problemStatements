@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 class Dashboard extends Component{
     render(){
         console.log(this.props);
+        const {workflows} = this.props;
         return(
             <div>
             <div className="divider"></div>
@@ -52,7 +53,7 @@ class Dashboard extends Component{
             <div className="dashboard">
                 <div className="row">
                     
-                    <WorkflowList/>
+                    <WorkflowList workflows={workflows}/>
                 </div>
             </div>
 
