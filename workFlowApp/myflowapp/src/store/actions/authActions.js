@@ -28,6 +28,7 @@ export const signOut=()=>{
 
 export const signUp=(newUser)=>{
     return(dispatch,getState,{getFirebase, getFirestore})=>{
+        console.log('Inside the signUp');
         const firebase = getFirebase();
         const firestore= getFirestore();
 
@@ -35,11 +36,14 @@ export const signUp=(newUser)=>{
             newUser.email,
             newUser.password
         ).then((resp)=>{
+            console.log('Inside the signUp '+resp.user.uid);
+            console.log(newUser.firstName);
+            console.log(newUser.lastName);
             return firestore.collection('users').doc(resp.user.uid).set({
                 firstName: newUser.firstName,
                 lastName: newUser.lastName
             })
-        }).then(()=> dispatch({type:'SIGNUP_SUCCESS'}))
-        .catch((e)=> dispatch({type:"SIGNUP_ERROR",e}));
+        }).then(()=> {dispatch({type:'SIGNUP_SUCCESS'})})
+        .catch((e)=> {dispatch({type:"SIGNUP_ERROR",e})});
     }
 }

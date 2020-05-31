@@ -13,16 +13,15 @@ class CreateNode extends Component{
         nodeDetails:'',
         nodeStatus:'pending'
     }
-    componentWillReceiveProps(props){
-        console.log(props);
-    }
-
     handleSubmit=(e)=>{
         e.preventDefault();
         //add the node
-       console.log(this.props.match.params.id);
+       //console.log(this.props);
        this.props.createNode(this.state,this.props.match.params.id);
+       //const path = '/workflow/'+ this.props.match.params.id;
         //Rerouting the user to the Workflow dashboard
+        console.log('about to reach the Redirect');
+        this.props.history.push('/');
 
         
 
@@ -67,7 +66,7 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         /**So whenever props.createNode is invoked (inside the handleSubmit function), the following function is executed. The newly created
          * node is taken and dispatched to the action creator*/
-        createNode:(node,id)=>dispatch(createNode(node,id)),
+        createNode:(node,id)=>dispatch(createNode(node,id))
     
     }
 }

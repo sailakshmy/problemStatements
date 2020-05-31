@@ -8,14 +8,22 @@ import {Link} from 'react-router-dom';
 import {firestoreConnect} from 'react-redux-firebase';
 //To use more than 1 higher order components and chain them together
 import {compose} from 'redux';
-import CreateNode from '../nodes/CreateNode';
+//To import the deleteNode actionCreator
+import {deleteNode} from '../../store/actions/nodeActions';
+
 
 class WorkflowDetails extends Component{
     handleChange=(e)=>{
         this.setState({
             [e.target.id]: e.target.value
         })
-       
+    }
+    handleDelete=(e)=>{
+        console.log(this.props.nodes.length);
+        console.log(this.props.nodes[this.props.nodes.length-1]);
+        console.log(this.props.match.params.id);    
+        this.props.deleteNode(this.props.nodes[this.props.nodes.length-1],this.props.match.params.id);
+
     }
     render(){
         console.log(this.props);
@@ -61,7 +69,7 @@ class WorkflowDetails extends Component{
                                 <div className="row" id='createWorkflowButton'>
                                     <div className="input-field col s12">
                                         <label htmlFor='shuffleNode'></label>
-                                        <button className="btn btn-large red darken-4 accent-4" id='createWorkflowButton'>
+                                        <button className="btn btn-large red darken-4 accent-4" id='createWorkflowButton' onClick={this.handleDelete}>
                                         <i className="material-icons left">clear</i>
                                         Delete</button>
                                     </div>
@@ -107,12 +115,16 @@ const mapStateToProps=(state, ownProps)=>{
 
     }
 }
-
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        deleteNode:(node,id)=>dispatch(deleteNode(node,id))
+    }
+}
 
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps,mapDispatchToProps),
     firestoreConnect([
         {collection:'workflows'},
-        {collection:'nodes'}
+        {collection:'nodes',orderBy:['createdAt','asc']}
     ])
 )(WorkflowDetails);

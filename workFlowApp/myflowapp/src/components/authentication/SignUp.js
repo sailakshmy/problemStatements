@@ -33,7 +33,7 @@ class SignUp extends Component {
             return <Redirect to='/'/>
         return(
             <div className="container">
-                <form onSubmit={this.handleSubmit} className="white" >
+                <form className="white" >
                     <h5>Sign Up</h5>
                     <div className="input-field">
                         <label htmlFor="firstName">First Name</label>
@@ -52,9 +52,9 @@ class SignUp extends Component {
                         <input type="password" id='password' onChange={this.handleChange}/>
                     </div>
                     <div className="input-field">
-                        <button className="btn blue">Sign Up</button>
+                        <button className="btn blue" onClick={this.handleSubmit}>Sign Up</button>
                         <div className="red-text center">
-                            {authError ? <p>{authError}</p>: null}
+                            {authError ? <p>{authError.message}</p>: null}
                         </div>
                     </div>
                     <div>

@@ -12,6 +12,30 @@ import {compose} from 'redux';
 
 
 class Dashboard extends Component{
+    state={
+        filtered:[]
+    }
+
+    handleChange=(e)=>{
+        let currentList;
+        let newList;
+        console.log('Inside on trigger');
+        if(e.target.value !== ''){
+            currentList = this.props.workflows;
+            newList= currentList.filter(workflow=>{
+                const title = workflow.workflowTitle.toLowerCase();
+                const filterText = e.target.value.toLowerCase();
+                return title.includes(filterText);
+            })
+        }
+        else {
+            newList = this.props.workflows;
+        }
+        this.setState({
+            filtered: newList
+        })
+    }
+
     render(){
         console.log(this.props);
         const {workflows, auth} = this.props;
@@ -27,7 +51,7 @@ class Dashboard extends Component{
                                 <div className="input-field col s12">
                                     <label htmlFor='searchBar'></label>
                                     <i className="material-icons prefix">search</i>
-                                    <input type="text" placeholder='Search Workflows' id='searchBar'/>
+                                    <input type="text" placeholder='Search Workflows' id='searchBar' onChange={this.handleChange}/>
                                 </div>
                             </div>
                         </div>
@@ -35,10 +59,12 @@ class Dashboard extends Component{
                             <div className="row" id='filterbutton'>
                                 <div className="input-field col s12">
                                     <label htmlFor='filterbutton'></label>
-                                    <button className="btn btn-large white black-text dropdown-trigger"
-                                    data-target='dropdown1' id='filterbutton'>
-                                        <i className="material-icons left">filter_list</i>
-                                    Filter</button>
+                                    <select className="btn white black-text" id="filterbutton">
+                                        <option value='' disabled selected> Filter</option>
+                                        <option value="1">ALL</option>
+                                        <option value="2">COMPLETED</option>
+                                        <option value="3">PENDING</option>
+                                    </select>                                
                                 </div>
                             </div>
                         </div>
@@ -81,6 +107,6 @@ const mapStateToProps=(state)=>{
 export default compose(
 connect(mapStateToProps),
 firestoreConnect([
-    {collection:'workflows'}
+    {collection:'workflows',orderBy:['createdAt','asc']}
 ])
 )(Dashboard);
