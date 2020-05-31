@@ -10,9 +10,9 @@ const WorkflowList = ({workflows}) =>{
             {workflows && workflows.map(
                 workflow =>{
                     return(
-                        <div className="col s4">
+                        <div className="col s4" key={workflow.id}>
                             <Link to={'/workflow/'+ workflow.id}>
-                            <WorkflowSummary workflow={workflow} key={workflow.id}/>
+                            <WorkflowSummary workflow={workflow} />
                             </Link>
                         </div>
                     )

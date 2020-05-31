@@ -10,7 +10,7 @@ const NodeList = ({nodes}) => {
             {nodes && nodes.map(
                 node=>{
                     return(
-                        <div className="col s4">
+                        <div className="col s4" key={node.id}>
                             <Link to={'/node/'+node.id}>
                             <NodeSummary node={node} key={node.id}/>
                             </Link>

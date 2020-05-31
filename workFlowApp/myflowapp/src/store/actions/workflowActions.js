@@ -6,14 +6,16 @@ export const createWorkflow = (workflow)=>{
         /*To add data to the firestore, initialise the getFirestore function and store it in a constant,
         so that it gives a reference to the Firestore DB */
         const firestore = getFirestore();
+        //get the profile information from the state
+        const profile = getState().firebase.profile;
         //Access the workflows Collection inside the firestore DB
         firestore.collection('workflows')
         //Add the new workflow document to the collection
         .add({...workflow,
             /*Since the workflow only has details regarding the workflowStatus and workflowTitle,
             add the details regarding the author */
-            authorFirstName:'S',
-            authorLastName:'L' 
+            authorFirstName:profile.firstName,
+            authorLastName:profile.lastName 
         })
         /**This is an async call, so using promises */
         .then(()=>{
@@ -26,4 +28,8 @@ export const createWorkflow = (workflow)=>{
         
         
     }
+}
+
+export const updateWorkflow=(workflow,node)=>{
+    
 }

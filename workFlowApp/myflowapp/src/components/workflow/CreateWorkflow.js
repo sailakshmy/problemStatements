@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 //Dispatch the Create_workflow action to the Action Creator by using mapDispatchToProps and connect
 import {createWorkflow} from '../../store/actions/workflowActions';
+//To Redirect the user if not signed in
+import {Redirect} from 'react-router-dom';
 
 
 class CreateWorkflow extends Component{
@@ -13,6 +15,8 @@ class CreateWorkflow extends Component{
     handleSubmit=(e)=>{
         e.preventDefault();
         this.props.createWorkflow(this.state);
+        //Rerouting the user back to the dashboard
+        this.props.history.push('/');
     }
     handleChange=(e)=>{
         this.setState({
@@ -21,6 +25,9 @@ class CreateWorkflow extends Component{
     }
 
     render(){
+        const {auth} = this.props;
+        if(!auth.uid)
+            return <Redirect to='/signin' />
         return(
         <div className="container">
         <form onSubmit={this.handleSubmit} className="white" >
@@ -50,7 +57,12 @@ const mapDispatchToProps=(dispatch)=>{
 
     }
 }
+const mapStateToProps=(state)=>{
+    return{
+        auth: state.firebase.auth
+    }
+}
 
 
 
-export default connect(null, mapDispatchToProps)(CreateWorkflow);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateWorkflow);

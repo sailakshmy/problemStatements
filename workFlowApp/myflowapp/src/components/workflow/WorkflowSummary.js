@@ -12,7 +12,7 @@ const WorkflowSummary = ({workflow}) =>{
                 </div>
                 <div className="divider"></div>
                 <div className="card-content input-field">
-                    <i className="material-icons right grey circle done">done</i>
+                    <i className="material-icons right grey circle">done</i>
                 </div>
 
             </div>

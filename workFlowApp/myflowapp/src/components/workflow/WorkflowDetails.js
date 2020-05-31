@@ -10,6 +10,12 @@ import {firestoreConnect} from 'react-redux-firebase';
 import {compose} from 'redux';
 
 class WorkflowDetails extends Component{
+    handleChange=(e)=>{
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+       
+    }
     render(){
         console.log(this.props);
         const{nodes, workflow} = this.props;
@@ -25,7 +31,7 @@ class WorkflowDetails extends Component{
                                 <div className="row">
                                     <div className="input-field col s12">
                                         <label htmlFor='searchBar'></label>
-                                        <input type="text" id='searchBar' value={workflow.workflowTitle}/>
+                                        <input type="text" id='searchBar' value={workflow.workflowTitle} onChange={this.handleChange}/>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +100,7 @@ const mapStateToProps=(state, ownProps)=>{
     const workflows = state.firestore.data.workflows;
     const workflow = workflows ? workflows[id] : null;
     return{
-        nodes: state.node.nodes,
+        nodes: state.firestore.ordered.nodes,//state.node.nodes,
         workflow: workflow
 
     }
@@ -104,6 +110,7 @@ const mapStateToProps=(state, ownProps)=>{
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        {collection:'workflows'}
+        {collection:'workflows'},
+        {collection:'nodes'}
     ])
 )(WorkflowDetails);

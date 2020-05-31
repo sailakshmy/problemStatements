@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 //Dispatch the create node action to the actionCreator by using mapDispatchToProps and connect
 import {createNode} from '../../store/actions/nodeActions';
-
+//To Redirect the user if not signed in
+import {Redirect} from 'react-router-dom';
 
 
 class CreateNode extends Component{
@@ -15,7 +16,13 @@ class CreateNode extends Component{
 
     handleSubmit=(e)=>{
         e.preventDefault();
+        //add the node
+       console.log(this.props);
+       
         this.props.createNode(this.state);
+        //Rerouting the user to the Workflow dashboard
+        
+
     }
     handleChange=(e)=>{
         this.setState({
@@ -24,6 +31,9 @@ class CreateNode extends Component{
     }
 
     render(){
+        const {auth} = this.props;
+        if(!auth.uid)
+            return <Redirect to='/signin'/>
         return (
         <div className="container">
         <form onSubmit={this.handleSubmit} className="white" >
@@ -53,9 +63,16 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         /**So whenever props.createNode is invoked (inside the handleSubmit function), the following function is executed. The newly created
          * node is taken and dispatched to the action creator*/
-        createNode:(node)=>dispatch(createNode(node))
+        createNode:(node)=>dispatch(createNode(node)),
+    
+    }
+}
+const mapStateToProps=(state)=>{
+    console.log(state);
+    return{
+        auth : state.firebase.auth
+
     }
 }
 
-
-export default connect(null, mapDispatchToProps)(CreateNode);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNode);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import WorkflowList from '../workflow/WorkflowList';
-import {Link} from 'react-router-dom';
+//To Redirect the user if not signed in
+import {Link,Redirect} from 'react-router-dom';
 //Connect the component to redux store
 import {connect} from 'react-redux';
 /*To explicitly tell Firestore as to which component is active and which collection is being updated.
@@ -9,10 +10,13 @@ import {firestoreConnect} from 'react-redux-firebase';
 //To use more than 1 higher order components and chain them together
 import {compose} from 'redux';
 
+
 class Dashboard extends Component{
     render(){
         console.log(this.props);
-        const {workflows} = this.props;
+        const {workflows, auth} = this.props;
+        if(!auth.uid)//To redirect the user to login page if not logged in
+            return <Redirect to='/signin'/>
         return(
             <div>
             <div className="divider"></div>
@@ -57,8 +61,7 @@ class Dashboard extends Component{
                 </div>
             <div className="divider darken-4"></div>
             <div className="dashboard">
-                <div className="row">
-                    
+                <div className="row">                    
                     <WorkflowList workflows={workflows}/>
                 </div>
             </div>
@@ -74,8 +77,9 @@ class Dashboard extends Component{
 const mapStateToProps=(state)=>{
    console.log(state);
     return{
-        workflows: state.firestore.ordered.workflows/*state.workflow.workflows- this is the dummy data that was hardcoded. To display
+        workflows: state.firestore.ordered.workflows,/*state.workflow.workflows- this is the dummy data that was hardcoded. To display
         the data that is available in the DB, access the redux's state.firestore.ordered.workflows*/
+        auth: state.firebase.auth
     }
 }
 
