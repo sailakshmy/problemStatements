@@ -1,8 +1,8 @@
 const initState = {
     nodes:[
-        {id:'1', nodeTitle: 'Node1', nodeDetails:'Content for Node 1',nodeStatus:'pending'},
+        /*{id:'1', nodeTitle: 'Node1', nodeDetails:'Content for Node 1',nodeStatus:'pending'},
         {id:'2', nodeTitle: 'Node2', nodeDetails:'Content for Node 2',nodeStatus:'completed'},
-        {id:'3', nodeTitle: 'Node3', nodeDetails:'Content for Node 3',nodeStatus:'inprogress'},
+        {id:'3', nodeTitle: 'Node3', nodeDetails:'Content for Node 3',nodeStatus:'inprogress'},*/
 
     ]
 }

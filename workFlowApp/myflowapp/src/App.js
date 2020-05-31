@@ -23,7 +23,7 @@ class App extends Component {
           <Route path='/signin' component={SignIn}/>
           <Route path='/signup' component={SignUp}/>
           <Route path='/createworkflow' component={CreateWorkflow}/>
-          <Route path='/createNode' component={CreateNode}/>
+          <Route path='/createNode/:id' component={CreateNode}/>
           <Route path='/node/:id' component={NodeDetails}/>
         </Switch>  
       </div>

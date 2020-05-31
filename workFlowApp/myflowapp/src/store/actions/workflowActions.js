@@ -8,13 +8,14 @@ export const createWorkflow = (workflow)=>{
         const firestore = getFirestore();
         //get the profile information from the state
         const profile = getState().firebase.profile;
+        console.log(profile);
         //Access the workflows Collection inside the firestore DB
         firestore.collection('workflows')
         //Add the new workflow document to the collection
         .add({...workflow,
             /*Since the workflow only has details regarding the workflowStatus and workflowTitle,
             add the details regarding the author */
-            authorFirstName:profile.firstName,
+           authorFirstName:profile.firstName,
             authorLastName:profile.lastName 
         })
         /**This is an async call, so using promises */

@@ -1,8 +1,8 @@
 const initState = {
     workflows: [
-        {id:'1', workflowTitle: 'Workflow1'},
+        /*{id:'1', workflowTitle: 'Workflow1'},
         {id:'2', workflowTitle: 'Workflow2'},
-        {id:'3', workflowTitle: 'Workflow3'}
+        {id:'3', workflowTitle: 'Workflow3'}*/
     ]
 }
 

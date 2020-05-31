@@ -35,15 +35,10 @@ class Dashboard extends Component{
                             <div className="row" id='filterbutton'>
                                 <div className="input-field col s12">
                                     <label htmlFor='filterbutton'></label>
-                                    <a href='#' className="btn btn-large white black-text dropdown-trigger"
+                                    <button className="btn btn-large white black-text dropdown-trigger"
                                     data-target='dropdown1' id='filterbutton'>
                                         <i className="material-icons left">filter_list</i>
-                                    Filter</a>
-                                    <ul className="dropdown-content" id='dropdown1'>
-                                        <li><a href="#">All</a></li>
-                                        <li><a href='#'>Completed</a></li>
-                                        <li><a href='#'>Pending</a></li>
-                                    </ul>
+                                    Filter</button>
                                 </div>
                             </div>
                         </div>

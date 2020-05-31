@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 import {firestoreConnect} from 'react-redux-firebase';
 //To use more than 1 higher order components and chain them together
 import {compose} from 'redux';
+import CreateNode from '../nodes/CreateNode';
 
 class WorkflowDetails extends Component{
     handleChange=(e)=>{
@@ -49,9 +50,10 @@ class WorkflowDetails extends Component{
                                 <div className="row" id='createWorkflowButton'>
                                     <div className="input-field col s12">
                                         <label htmlFor='createNode'></label>
-                                        <Link to='/createnode' className="btn btn-large green darken-4 accent-4" id='createWorkflowButton'>
+                                        <Link to={'/createnode/'+ id} className="btn btn-large green darken-4 accent-4" id='createWorkflowButton'>
                                         <i className="material-icons left">add</i>
-                                        Add Node</Link>
+                                        Add Node
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

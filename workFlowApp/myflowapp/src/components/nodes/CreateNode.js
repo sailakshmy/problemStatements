@@ -13,14 +13,17 @@ class CreateNode extends Component{
         nodeDetails:'',
         nodeStatus:'pending'
     }
+    componentWillReceiveProps(props){
+        console.log(props);
+    }
 
     handleSubmit=(e)=>{
         e.preventDefault();
         //add the node
-       console.log(this.props);
-       
-        this.props.createNode(this.state);
+       console.log(this.props.match.params.id);
+       this.props.createNode(this.state,this.props.match.params.id);
         //Rerouting the user to the Workflow dashboard
+
         
 
     }
@@ -32,6 +35,7 @@ class CreateNode extends Component{
 
     render(){
         const {auth} = this.props;
+        //console.log(workflow);
         if(!auth.uid)
             return <Redirect to='/signin'/>
         return (
@@ -63,12 +67,13 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         /**So whenever props.createNode is invoked (inside the handleSubmit function), the following function is executed. The newly created
          * node is taken and dispatched to the action creator*/
-        createNode:(node)=>dispatch(createNode(node)),
+        createNode:(node,id)=>dispatch(createNode(node,id)),
     
     }
 }
 const mapStateToProps=(state)=>{
     console.log(state);
+    //console.log(ownProps);
     return{
         auth : state.firebase.auth
 
